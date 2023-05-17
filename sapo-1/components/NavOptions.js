@@ -1,24 +1,24 @@
-import { Text, TouchableOpacity, View, FlatList, Image } from 'react-native'
-import React from 'react'
-import tw from 'twrnc';
-import { Icon } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
-import { selectOrigin } from '../slices/navSlice';
+import { Text, TouchableOpacity, View, FlatList, Image } from "react-native";
+import React from "react";
+import tw from "twrnc";
+import { Icon } from "react-native-elements";
+import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { selectOrigin } from "../slices/navSlice";
 
 const data = [
-    {
-        id: "123",
-        title: "Go Sanpo",
-        image: "https://links.papareact.com/3pn",
-        screen: "QuestScreen",
-    },
-    {
-        id: "456",
-        title: "Create Adventure",
-        image: "https://links.papareact.com/28w",
-        screen: "CreateAdventureScreen",
-    },
+  {
+    id: "123",
+    title: "Go Sanpo",
+    image: "https://links.papareact.com/3pn",
+    screen: "QuestScreen",
+  },
+  {
+    id: "456",
+    title: "Create Adventure",
+    image: "https://links.papareact.com/28w",
+    screen: "CreateAdventureScreen",
+  },
 ];
 
 const NavOptions = () => {
@@ -26,9 +26,10 @@ const NavOptions = () => {
   const origin = useSelector(selectOrigin);
 
   return (
-    <FlatList 
+    <FlatList
       data={data}
       horizontal
+      scrollEnabled={false}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <TouchableOpacity
@@ -36,21 +37,23 @@ const NavOptions = () => {
           onPress={() => navigation.navigate(item.screen)}
           disabled={!origin}
         >
-            <View style={!origin && tw`opacity-20`}>
-                <Image
-                  style={{ width: 120, height: 120, resizeMode: "contain" }}
-                  source={{ uri: item.image }}
-                />
-                <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
-                <Icon 
-                  style={tw`p-2 bg-black rounded-full w-10 mt-4`}
-                  name="arrowright" color="white" type="antdesign"
-                />
-            </View>
+          <View style={!origin && tw`opacity-20`}>
+            <Image
+              style={{ width: 120, height: 120, resizeMode: "contain" }}
+              source={{ uri: item.image }}
+            />
+            <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
+            <Icon
+              style={tw`p-2 bg-black rounded-full w-10 mt-4`}
+              name="arrowright"
+              color="white"
+              type="antdesign"
+            />
+          </View>
         </TouchableOpacity>
       )}
     />
-  )
-}
+  );
+};
 
-export default NavOptions
+export default NavOptions;

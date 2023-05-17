@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View, SafeAreaView, Image } from 'react-native'
-import React from 'react'
-import tw from 'twrnc';
-import NavOptions from '../components/NavOptions';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { StyleSheet, Text, View, SafeAreaView, Image } from "react-native";
+import React from "react";
+import tw from "twrnc";
+import NavOptions from "../components/NavOptions";
+import NavFavorites from "../components/NavFavorites";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_APIKEY } from "@env";
-import { useDispatch } from 'react-redux';
-import { setDestination, setOrigin } from '../slices/navSlice';
+import { useDispatch } from "react-redux";
+import { setDestination, setOrigin } from "../slices/navSlice";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -38,14 +39,15 @@ const HomeScreen = () => {
           }}
           query={{
             key: GOOGLE_MAPS_APIKEY,
-            language: 'en',
+            language: "en",
           }}
-
-          onPress={(data, details=null) => {
-            dispatch(setOrigin({
-              location: details.geometry.location,
-              description: data.description,
-            }));
+          onPress={(data, details = null) => {
+            dispatch(
+              setOrigin({
+                location: details.geometry.location,
+                description: data.description,
+              })
+            );
 
             dispatch(setDestination(null));
           }}
@@ -59,9 +61,10 @@ const HomeScreen = () => {
         />
 
         <NavOptions />
+        <NavFavorites />
       </View>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;
