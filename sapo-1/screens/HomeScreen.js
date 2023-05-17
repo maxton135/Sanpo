@@ -6,7 +6,7 @@ import NavFavorites from "../components/NavFavorites";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import { useDispatch } from "react-redux";
-import { setDestination, setOrigin } from "../slices/navSlice";
+import { setDestination, setOrigin, addWaypoint } from "../slices/navSlice";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const HomeScreen = () => {
         />
         */}
         <Text style={tw`text-5xl font-bold`}>Sanpo</Text>
-
+        {/*
         <GooglePlacesAutocomplete
           styles={{
             container: {
@@ -43,7 +43,7 @@ const HomeScreen = () => {
           }}
           onPress={(data, details = null) => {
             dispatch(
-              setOrigin({
+              addWaypoint({
                 location: details.geometry.location,
                 description: data.description,
               })
@@ -59,7 +59,7 @@ const HomeScreen = () => {
           nearbyPlacesAPI="GooglePlacesSearch"
           debounce={400}
         />
-
+        */}
         <NavOptions />
         <NavFavorites />
       </View>

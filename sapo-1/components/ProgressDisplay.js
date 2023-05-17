@@ -52,6 +52,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
+    borderBottomColor: "rgb(209 213 219)",
+    borderBottomWidth: 1,
+    borderTopColor: "rgb(209 213 219)",
+    borderTopWidth: 1,
   },
   stepIndicator: {
     marginVertical: 20,

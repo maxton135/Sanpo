@@ -24,9 +24,9 @@ const Map = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!origin || waypoints.length == 0) return;
+    if (waypoints.length == 0) return;
 
-    let identifiers = ["origin"];
+    let identifiers = [];
     for (let i = 0; i < waypoints.length; i++) {
       identifiers.push("marker" + i);
     }
@@ -34,7 +34,7 @@ const Map = () => {
     mapRef.current.fitToSuppliedMarkers(identifiers, {
       edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
     });
-  }, [origin, waypoints]);
+  }, [waypoints]);
 
   return (
     <MapView
@@ -42,8 +42,8 @@ const Map = () => {
       style={tw`flex-1`}
       mapType="mutedStandard"
       initialRegion={{
-        latitude: origin.location.lat,
-        longitude: origin.location.lng,
+        latitude: 37.7749,
+        longitude: -122.4194,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       }}
@@ -58,7 +58,7 @@ const Map = () => {
         />
       )*/}
 
-      {origin?.location && (
+      {/*origin?.location && (
         <Marker
           coordinate={{
             latitude: origin.location.lat,
@@ -68,7 +68,7 @@ const Map = () => {
           description={origin.description}
           identifier="origin"
         />
-      )}
+        )*/}
 
       {waypoints.length > 0 &&
         waypoints.map(({ location, description }, index) => {
