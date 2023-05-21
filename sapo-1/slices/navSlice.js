@@ -5,6 +5,9 @@ const initialState = {
   destination: null,
   waypoints: [],
   travelTimeInformation: null,
+  progressStage: 0,
+  focusMarker: null,
+  foodStops: [],
 };
 
 export const navSlice = createSlice({
@@ -30,6 +33,18 @@ export const navSlice = createSlice({
     setTravelTimeInformation: (state, action) => {
       state.travelTimeInformation = action.payload;
     },
+    setProgressStage: (state, action) => {
+      state.progressStage = action.payload;
+    },
+    setFocusMarker: (state, action) => {
+      state.focusMarker = action.payload;
+    },
+    setFoodStops: (state, action) => {
+      state.foodStops = action.payload;
+    },
+    addFoodStop: (state, action) => {
+      state.waypoints = [...state.waypoints, action.payload];
+    },
   },
 });
 
@@ -39,6 +54,9 @@ export const {
   addWaypoint,
   removeWaypoint,
   setTravelTimeInformation,
+  setProgressStage,
+  setFocusMarker,
+  setFoodStops,
 } = navSlice.actions;
 
 // Selectors
@@ -47,5 +65,8 @@ export const selectDestination = (state) => state.nav.destination;
 export const selectWaypoints = (state) => state.nav.waypoints;
 export const selectTravelTimeInformation = (state) =>
   state.nav.travelTimeInformation;
+export const selectProgressStage = (state) => state.nav.progressStage;
+export const selectFocusMarker = (state) => state.nav.focusMarker;
+export const selectFoodStops = (state) => state.nav.foodStops;
 
 export default navSlice.reducer;

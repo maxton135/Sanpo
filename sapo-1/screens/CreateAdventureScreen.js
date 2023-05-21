@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import WaypointsCard from "../components/WaypointsCard";
 import ProgressDisplay from "../components/ProgressDisplay";
 import SearchBar from "../components/SearchBar";
+import FoodStopsCard from "../components/FoodStopsCard";
 
 const CreateAdventureScreen = () => {
   const Stack = createStackNavigator();
@@ -26,6 +27,13 @@ const CreateAdventureScreen = () => {
           <Stack.Screen
             name="WaypointsCard"
             component={WaypointsCard}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="FoodStopsCard"
+            component={FoodStopsCard}
             options={{
               headerShown: false,
             }}

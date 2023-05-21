@@ -8,8 +8,10 @@ import {
 import React from "react";
 import StepIndicator from "react-native-step-indicator";
 import tw from "twrnc";
+import { selectProgressStage } from "../slices/navSlice";
+import { useSelector } from "react-redux";
 
-const labels = ["Waypoints", "Edit Route", "Food Stops"];
+const labels = ["Waypoints", "Food Stops", "Create Route"];
 
 const indicatorStyle = {
   stepIndicatorSize: 30,
@@ -32,12 +34,13 @@ const indicatorStyle = {
 };
 
 const ProgressDisplay = () => {
+  const progressState = useSelector(selectProgressStage);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.stepIndicator}>
         <StepIndicator
           customStyles={indicatorStyle}
-          currentPosition={0}
+          currentPosition={progressState}
           stepCount={3}
           labels={labels}
         />

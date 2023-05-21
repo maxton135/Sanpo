@@ -7,6 +7,8 @@ import {
   selectOrigin,
   selectDestination,
   selectWaypoints,
+  setFocusMarker,
+  selectFoodStops,
 } from "../slices/navSlice";
 import MapViewDirections from "react-native-maps-directions";
 import { GOOGLE_MAPS_APIKEY } from "@env";
@@ -18,6 +20,7 @@ const Map = () => {
   const destination = useSelector(selectDestination);
   // const focusMarker = useSelector(selectFocusMarker);
   const waypoints = useSelector(selectWaypoints);
+  const foodStops = useSelector(selectFoodStops);
 
   const mapRef = useRef(null);
   const navigation = useNavigation();
@@ -81,6 +84,32 @@ const Map = () => {
               }}
               title={description}
               identifier={"marker" + index}
+              onPress={() => {
+                dispatch(
+                  setFocusMarker({
+                    location: location,
+                    description: description,
+                  })
+                );
+              }}
+            />
+          );
+        })}
+
+      {foodStops.length > 0 &&
+        foodStops.map((business, index) => {
+          return (
+            <Marker
+              key={index}
+              coordinate={{
+                latitude: business.location.lat,
+                longitude: business.location.lng,
+              }}
+              title={business.name}
+              identifier={"foodstop" + index}
+              onPress={() => {
+                console.log("Pressed FoodStop marker");
+              }}
             />
           );
         })}
